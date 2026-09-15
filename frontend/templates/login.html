@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Вход — ЗелёнаяКорзина</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <header>
+    <a href="/" class="logo">🥦 ЗелёнаяКорзина</a>
+    <nav>
+      <a href="/">Каталог</a>
+    </nav>
+  </header>
+  <main>
+    <div class="filters">
+      <button id="tab-login" class="active" data-testid="tab-login">Вход</button>
+      <button id="tab-register" data-testid="tab-register">Регистрация</button>
+    </div>
+
+    <form class="card" id="login-form" data-testid="login-form">
+      <label for="login-email">Email</label>
+      <input type="email" id="login-email" data-testid="login-email-input" required />
+      <label for="login-password">Пароль</label>
+      <input type="password" id="login-password" data-testid="login-password-input" required />
+      <div class="error-message" id="login-error" data-testid="login-error"></div>
+      <button type="submit" class="primary" data-testid="login-submit-btn">Войти</button>
+    </form>
+
+    <form class="card" id="register-form" data-testid="register-form" style="display:none;">
+      <label for="register-email">Email</label>
+      <input type="email" id="register-email" data-testid="register-email-input" required />
+      <label for="register-password">Пароль (минимум 6 символов)</label>
+      <input type="password" id="register-password" data-testid="register-password-input" required minlength="6" />
+      <div class="error-message" id="register-error" data-testid="register-error"></div>
+      <button type="submit" class="primary" data-testid="register-submit-btn">Зарегистрироваться</button>
+    </form>
+  </main>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/login.js"></script>
+</body>
+</html>

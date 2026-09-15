@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Корзина — ЗелёнаяКорзина</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <header>
+    <a href="/" class="logo">🥦 ЗелёнаяКорзина</a>
+    <nav>
+      <a href="/">Каталог</a>
+      <a href="/orders.html">Мои заказы</a>
+      <a href="/cart.html" class="cart-link">Корзина <span id="cart-count">0</span></a>
+      <a href="/login.html" id="auth-link">Войти</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Корзина</h1>
+    <div id="cart-items" data-testid="cart-items"></div>
+    <div class="cart-total" id="cart-total" data-testid="cart-total"></div>
+    <button class="primary" id="checkout-btn" data-testid="checkout-btn">Оформить заказ</button>
+  </main>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/cart.js"></script>
+</body>
+</html>

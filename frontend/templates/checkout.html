@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Оформление заказа — ЗелёнаяКорзина</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <header>
+    <a href="/" class="logo">🥦 ЗелёнаяКорзина</a>
+    <nav>
+      <a href="/">Каталог</a>
+      <a href="/orders.html">Мои заказы</a>
+      <a href="/cart.html" class="cart-link">Корзина <span id="cart-count">0</span></a>
+      <a href="/login.html" id="auth-link">Войти</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Оформление заказа</h1>
+    <form class="card" id="checkout-form" data-testid="checkout-form">
+      <label for="address">Адрес доставки</label>
+      <input type="text" id="address" data-testid="address-input" placeholder="ул. Баумана, д. 1, кв. 2" required />
+
+      <label for="card-number">Номер карты</label>
+      <input type="text" id="card-number" data-testid="card-number-input" placeholder="4242 4242 4242 4242" required />
+
+      <div style="display:flex; gap:10px;">
+        <div style="flex:1;">
+          <label for="card-expiry">Срок действия</label>
+          <input type="text" id="card-expiry" data-testid="card-expiry-input" placeholder="12/28" required />
+        </div>
+        <div style="flex:1;">
+          <label for="card-cvv">CVV</label>
+          <input type="text" id="card-cvv" data-testid="card-cvv-input" placeholder="123" required />
+        </div>
+      </div>
+
+      <p style="font-size:0.8rem; color:#6b7a6f;">
+        Это тестовая (mock) оплата. Любая карта проходит успешно, кроме карты, оканчивающейся на 0002 — она специально настроена как отклонённая, для тестирования негативных сценариев.
+      </p>
+
+      <div class="error-message" id="error-message" data-testid="error-message"></div>
+      <div class="success-message" id="success-message" data-testid="success-message"></div>
+
+      <button type="submit" class="primary" data-testid="pay-btn">Оплатить</button>
+    </form>
+  </main>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/checkout.js"></script>
+</body>
+</html>

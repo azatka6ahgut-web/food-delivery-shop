@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>ЗелёнаяКорзина — Доставка продуктов</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <header>
+    <a href="/" class="logo">🥦 ЗелёнаяКорзина</a>
+    <nav>
+      <a href="/" >Каталог</a>
+      <a href="/orders.html">Мои заказы</a>
+      <a href="/cart.html" class="cart-link">Корзина <span id="cart-count">0</span></a>
+      <a href="/login.html" id="auth-link">Войти</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Каталог продуктов</h1>
+    <div class="filters" data-testid="category-filters">
+      <button class="active" data-category="" data-testid="filter-all">Все</button>
+      <button data-category="dairy" data-testid="filter-dairy">Молочное</button>
+      <button data-category="bakery" data-testid="filter-bakery">Выпечка</button>
+      <button data-category="fruits" data-testid="filter-fruits">Фрукты</button>
+      <button data-category="meat" data-testid="filter-meat">Мясо</button>
+      <button data-category="grocery" data-testid="filter-grocery">Бакалея</button>
+      <button data-category="drinks" data-testid="filter-drinks">Напитки</button>
+    </div>
+    <div class="product-grid" id="product-grid" data-testid="product-grid"></div>
+  </main>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/catalog.js"></script>
+</body>
+</html>

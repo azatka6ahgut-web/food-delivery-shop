@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.pytest_cache/
+.allure-results/
+allure-report/
+*.egg-info/
+.DS_Store
+htmlcov/
+.coverage
