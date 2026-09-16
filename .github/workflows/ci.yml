@@ -1,0 +1,50 @@
+name: CI
+
+# Когда запускать этот workflow
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  tests:
+    # На какой операционной системе запускать
+    runs-on: ubuntu-latest
+
+    steps:
+      # Шаг 1: скачать код проекта на виртуальную машину
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Шаг 2: установить Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Шаг 3: поднять базу и бэкенд через docker compose
+      - name: Start application
+        run: docker compose up -d --build
+
+      # Шаг 4: установить библиотеки для тестов
+      - name: Install test dependencies
+        run: pip install pytest httpx psycopg2-binary
+
+      # Шаг 5: дождаться, пока бэкенд реально начнёт отвечать
+      - name: Wait for backend
+        run: |
+          for i in {1..30}; do
+            if curl -s http://localhost:8000/health; then
+              echo "Backend is up"
+              exit 0
+            fi
+            echo "Waiting for backend..."
+            sleep 2
+          done
+          echo "Backend did not start in time"
+          exit 1
+
+      # Шаг 6: запустить тесты
+      - name: Run tests
+        run: python -m pytest test/ -v
