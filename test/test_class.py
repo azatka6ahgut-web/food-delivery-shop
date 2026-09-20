@@ -25,7 +25,7 @@ def test_full_checkout_flow_via_ui(api_client, page, unique_email):
     expect(page.locator('[data-testid="success-message"]')).to_contain_text("оплачен")
 
 
-def test_full_checkout_flow_via_ui(api_client, page, unique_email):
+def test_full_checkout_flow_via_ui_bad_flow(api_client, page, unique_email):
     api_client.post("/auth/register", json={"email": unique_email, "password": "secret123"})
     page.goto('http://localhost:8000/login.html')
     login_page = LoginPage(page)
