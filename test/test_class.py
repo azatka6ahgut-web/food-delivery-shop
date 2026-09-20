@@ -17,7 +17,7 @@ def test_full_checkout_flow_via_ui(api_client, page, unique_email):
     first_card = page.locator('[data-testid="product-card"]').first
     add_button = first_card.locator('[data-testid="add-to-cart-btn"]')
     add_button.click()    
-    expect(pag.locator('#cart-count')).to_contain_text("1")
+    expect(page.locator('#cart-count')).to_contain_text("1")
     page.goto('http://localhost:8000/cart.html')
     page.locator('[data-testid="checkout-btn"]').click()
     pay_page = CheckoutPage(page)
@@ -34,7 +34,7 @@ def test_full_checkout_flow_via_ui_bad_flow(api_client, page, unique_email):
     first_card = page.locator('[data-testid="product-card"]').first
     add_button = first_card.locator('[data-testid="add-to-cart-btn"]')
     add_button.click()    
-    expect(pag.locator('#cart-count')).to_contain_text("1")
+    expect(page.locator('#cart-count')).to_contain_text("1")
     page.goto('http://localhost:8000/cart.html')
     page.locator('[data-testid="checkout-btn"]').click()
     pay_page = CheckoutPage(page)
