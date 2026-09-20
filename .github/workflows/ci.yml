@@ -29,7 +29,7 @@ jobs:
 
       # Шаг 4: установить библиотеки для тестов
       - name: Install test dependencies
-        run: pip install pytest httpx psycopg2-binary
+        run: pip install pytest httpx psycopg2-binary allure uuid
 
       # Шаг 5: дождаться, пока бэкенд реально начнёт отвечать
       - name: Wait for backend
