@@ -29,7 +29,11 @@ jobs:
 
       # Шаг 4: установить библиотеки для тестов
       - name: Install test dependencies
-        run: pip install pytest httpx psycopg2-binary allure uuid
+        run: pip install pytest httpx psycopg2-binary pytest-playwright pytest-html allure-pytest
+
+      # Шаг 4.1: установить playwright бразуеры
+      - name: Install Playwright browsers
+        run: playwright install --with-deps chromium
 
       # Шаг 5: дождаться, пока бэкенд реально начнёт отвечать
       - name: Wait for backend
