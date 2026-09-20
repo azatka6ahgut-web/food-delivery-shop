@@ -22,8 +22,9 @@ def test_full_checkout_flow_via_ui(api_client, page, unique_email):
     page.locator('[data-testid="checkout-btn"]').click()
     pay_page = CheckoutPage(page)
     pay_page.pay("Test_adres", "4242424242424242", "12/28", "322")
-    page.wait_for_url("http://localhost:8000/orders.html")
     expect(page.locator('[data-testid="success-message"]')).to_contain_text("оплачен")
+    page.wait_for_url("http://localhost:8000/orders.html")
+    
 
 
 def test_full_checkout_flow_via_ui_bad_flow(api_client, page, unique_email):
