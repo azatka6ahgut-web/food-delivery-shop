@@ -10,3 +10,5 @@ allure-report/
 .DS_Store
 htmlcov/
 .coverage
+report.html
+allure-results

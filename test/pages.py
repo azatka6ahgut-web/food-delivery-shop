@@ -1,3 +1,4 @@
+import allure
 class CheckoutPage:
     def __init__(self, page):
         self.page = page
@@ -9,6 +10,7 @@ class CheckoutPage:
         self.success_message = page.locator('[data-testid="success-message"]')
         self.error_message = page.locator('[data-testid="error-message"]')
 
+    @allure.step("Оплатить заказ")
     def pay(self, address, card_number, expiry, cvv):
         self.address_input.fill(address)
         self.card_number_input.fill(card_number)
@@ -23,7 +25,7 @@ class LoginPage:
         self.login_password = page.locator('#login-password')
         self.login_submit_btn = page.locator('[data-testid="login-submit-btn"]')
         
-
+    @allure.step("Авторизоваться")
     def login(self, email, password):
         self.login_email.fill(email)
         self.login_password.fill(password)
