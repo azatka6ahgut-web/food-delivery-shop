@@ -16,4 +16,5 @@ for price in prices:
     total = total + price   # или короче: total += price
 
 print(total)
+print(total)
  
