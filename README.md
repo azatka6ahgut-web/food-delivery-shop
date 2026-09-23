@@ -83,3 +83,10 @@ food-delivery-shop/
 - [ ] Добавить Playwright UI-тесты (Page Object Model)
 - [ ] Подключить Allure-отчёты
 - [ ] Настроить GitHub Actions CI (автозапуск тестов на push)
+
+
+## Allure Report
+
+Актуальный отчёт по тестам (обновляется при каждом push):
+
+👉 [https://azatka6ahgut-web.github.io/food-delivery-shop/](https://azatka6ahgut-web.github.io/food-delivery-shop/)
