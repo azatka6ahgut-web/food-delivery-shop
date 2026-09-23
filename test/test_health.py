@@ -1,3 +1,6 @@
+import pytest
+
+@pytest.mark.smoke
 def test_health_check_returns_ok(api_client):
     response = api_client.get("/health")
 

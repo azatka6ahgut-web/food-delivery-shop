@@ -1,12 +1,16 @@
 from playwright.sync_api import expect
+import pytest
 
 
+
+
+@pytest.mark.smoke
 def test_ui_catalog(page):
     page.goto("http://localhost:8000")
     assert page.title() == "ЗелёнаяКорзина — Доставка продуктов"
     assert "Каталог продуктов" in page.title() or "ЗелёнаяКорзина" in page.title()
 
-
+@pytest.mark.regression
 def test_catalog_shows_products(page):
     page.goto("http://localhost:8000")
     product = page.locator('[data-testid="product-card"]')

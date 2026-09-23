@@ -1,7 +1,8 @@
 from pages import LoginPage, CheckoutPage
 from playwright.sync_api import expect
+import pytest
 
-
+@pytest.mark.smoke
 def test_login_via_page_object_with_class(api_client, page, unique_email):
     api_client.post(
         "/auth/register", json={"email": unique_email, "password": "secret123"}
@@ -12,7 +13,7 @@ def test_login_via_page_object_with_class(api_client, page, unique_email):
 
     assert page.url == "http://localhost:8000/"
 
-
+@pytest.mark.regression
 def test_full_checkout_flow_via_ui(api_client, page, unique_email):
     api_client.post(
         "/auth/register", json={"email": unique_email, "password": "secret123"}
@@ -31,7 +32,7 @@ def test_full_checkout_flow_via_ui(api_client, page, unique_email):
     expect(page.locator('[data-testid="success-message"]')).to_contain_text("оплачен")
     page.wait_for_url("http://localhost:8000/orders.html")
 
-
+@pytest.mark.regression
 def test_full_checkout_flow_via_ui_bad_flow(api_client, page, unique_email):
     api_client.post(
         "/auth/register", json={"email": unique_email, "password": "secret123"}
