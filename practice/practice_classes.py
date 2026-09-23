@@ -13,4 +13,5 @@ my_wallet = Wallet('Azat', 500)
 print(my_wallet.show_balance)
 print(my_wallet.add_money(500))
 print(my_wallet.show_balance)
+print(my_wallet.show_balance)
 
