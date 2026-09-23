@@ -14,7 +14,9 @@ def test_register_duplicate_email_fails(api_client, unique_email):
     payload = {"email": unique_email, "password": "secret123"}
     api_client.post("/auth/register", json=payload)  # первая регистрация — ок
 
-    response = api_client.post("/auth/register", json=payload)  # повторная — должна упасть
+    response = api_client.post(
+        "/auth/register", json=payload
+    )  # повторная — должна упасть
 
     assert response.status_code == 400
 

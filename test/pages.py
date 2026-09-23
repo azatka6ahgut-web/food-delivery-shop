@@ -1,4 +1,6 @@
 import allure
+
+
 class CheckoutPage:
     def __init__(self, page):
         self.page = page
@@ -18,16 +20,17 @@ class CheckoutPage:
         self.card_cvv_input.fill(cvv)
         self.pay_button.click()
 
+
 class LoginPage:
     def __init__(self, page):
         self.page = page
-        self.login_email = page.locator('#login-email')
-        self.login_password = page.locator('#login-password')
+        self.login_email = page.locator("#login-email")
+        self.login_password = page.locator("#login-password")
         self.login_submit_btn = page.locator('[data-testid="login-submit-btn"]')
-        
+
     @allure.step("Авторизоваться")
     def login(self, email, password):
         self.login_email.fill(email)
         self.login_password.fill(password)
         self.login_submit_btn.click()
-        self.page.wait_for_url('http://localhost:8000')
+        self.page.wait_for_url("http://localhost:8000")

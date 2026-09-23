@@ -4,7 +4,7 @@ def test_products_filtered_by_category_returns_only_that_category(api_client):
 
     assert products != []
     assert response.status_code == 200
-    assert isinstance(products, list) 
+    assert isinstance(products, list)
 
     for product in products:
         assert product["category"] == "dairy"

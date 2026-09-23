@@ -27,11 +27,21 @@ def test_add_same_item_twice_increases_quantity(api_client, auth_headers):
     products = api_client.get("/products").json()
     product_id = products[0]["id"]
 
-    api_client.post("/cart/items", headers=auth_headers, json={"product_id": product_id, "quantity": 1})
-    response = api_client.post("/cart/items", headers=auth_headers, json={"product_id": product_id, "quantity": 2})
+    api_client.post(
+        "/cart/items",
+        headers=auth_headers,
+        json={"product_id": product_id, "quantity": 1},
+    )
+    response = api_client.post(
+        "/cart/items",
+        headers=auth_headers,
+        json={"product_id": product_id, "quantity": 2},
+    )
 
     body = response.json()
-    assert len(body["items"]) == 1  # не два разных элемента, а один с увеличенным количеством
+    assert (
+        len(body["items"]) == 1
+    )  # не два разных элемента, а один с увеличенным количеством
     assert body["items"][0]["quantity"] == 3
 
 

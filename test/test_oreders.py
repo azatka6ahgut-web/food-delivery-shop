@@ -1,7 +1,11 @@
 def test_create_order_from_cart_succeeds(api_client, auth_headers):
     products = api_client.get("/products").json()
     product_id = products[0]["id"]
-    api_client.post("/cart/items", headers=auth_headers, json={"product_id": product_id, "quantity": 2})
+    api_client.post(
+        "/cart/items",
+        headers=auth_headers,
+        json={"product_id": product_id, "quantity": 2},
+    )
 
     response = api_client.post(
         "/orders",
@@ -19,9 +23,15 @@ def test_create_order_from_cart_succeeds(api_client, auth_headers):
 def test_order_creation_clears_the_cart(api_client, auth_headers):
     products = api_client.get("/products").json()
     product_id = products[0]["id"]
-    api_client.post("/cart/items", headers=auth_headers, json={"product_id": product_id, "quantity": 1})
+    api_client.post(
+        "/cart/items",
+        headers=auth_headers,
+        json={"product_id": product_id, "quantity": 1},
+    )
 
-    api_client.post("/orders", headers=auth_headers, json={"delivery_address": "ул. Тестовая, 1"})
+    api_client.post(
+        "/orders", headers=auth_headers, json={"delivery_address": "ул. Тестовая, 1"}
+    )
 
     cart = api_client.get("/cart", headers=auth_headers).json()
     assert cart["items"] == []
