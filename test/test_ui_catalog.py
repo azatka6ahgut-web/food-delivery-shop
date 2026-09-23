@@ -1,7 +1,7 @@
 from playwright.sync_api import expect
 
 
-def test_cui_catalog(page):
+def test_ui_catalog(page):
     page.goto("http://localhost:8000")
     assert page.title() == "ЗелёнаяКорзина — Доставка продуктов"
     assert "Каталог продуктов" in page.title() or "ЗелёнаяКорзина" in page.title()
@@ -30,14 +30,3 @@ def test_add_product_to_cart_updates_badge_2(page, auth_headers):
     add_button = first_card.locator('[data-testid="add-to-cart-btn"]')
     add_button.click()
     expect(page.locator("#cart-count")).to_have_text("1")
-
-
-def _login_via_ui(page, api_client, unique_email):
-    api_client.post(
-        "/auth/register", json={"email": unique_email, "password": "secret123"}
-    )
-    page.goto("http://localhost:8000/login.html")
-    page.locator("#login-email").fill(unique_email)
-    page.locator("#login-password").fill("secret123")
-    page.locator('[data-testid="login-submit-btn"]').click()
-    page.wait_for_url("http://localhost:8000")
