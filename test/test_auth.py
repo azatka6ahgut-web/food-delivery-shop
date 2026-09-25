@@ -48,3 +48,29 @@ def test_login_with_wrong_password_fails(api_client, unique_email):
     )
 
     assert response.status_code == 401
+
+def test_auth_with_busy_email(api_client, unique_email):
+    api_client.post('/auth/register', json={"email": unique_email , "password": "secret123"},)
+    response = api_client.post('/auth/register', json={"email": unique_email , "password": "secret1233"},)
+
+    assert response.status_code == 400
+
+def test_auth_with_empty_email(api_client):
+    response = api_client.post('/auth/register', json={'email': "" , "password": "secret123"},)
+    assert response.status_code == 422
+
+def test_auth_with_empty_password(api_client, unique_email):
+    response = api_client.post('/auth/register', json={'email': unique_email , "password": ""},)
+    assert response.status_code == 422
+
+def test_login_with_bad_password(api_client, unique_email):
+    response = api_client.post('/auth/login' , data={"username": unique_email , "password": "asdasdasd"},)
+    assert response.status_code == 401
+def test_login_with_unname_profile(api_client):
+    response = api_client.post('/auth/login', data={"username": "qwert", "password": "secret1111",})
+    assert response.status_code == 401
+
+def test_request_to_guard_endpoint(api_client):
+    response = api_client.get('/auth/me')
+    assert response.status_code == 401
+
